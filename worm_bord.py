@@ -1,4 +1,4 @@
-""" The worm game ~~~~~> Beware of Self """
+""" The worm game ~~~~~>  Beware of Borders & Self"""
 
 import pygame
 import random
@@ -53,9 +53,17 @@ class worm():
         self.x+=self.dir_x
         self.y+=self.dir_y
 
-        if (self.x, self.y ) in self.body:
+        r , g , b , a =self.surface.get_at((self.x, self.y))
+
+        if (r, g, b)!=(0,0,0):
             self.crashed=True
-        self.body.insert(0, (self.x, self.y))
+
+        self.body.insert(0,(self.x, self.y))
+
+        #
+        # if (self.x, self.y ) in self.body:
+        #     self.crashed=True
+        # self.body.insert(0, (self.x, self.y))
 
         if (len(self.body))>self.length:
             self.body.pop()
